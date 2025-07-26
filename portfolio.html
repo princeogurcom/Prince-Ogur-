@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Ogur | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@700&family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark-bg: #121212;
+            --light-text: #f8f8f8;
+            --accent: #4a90e2;
+            --soft-dark: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Open Sans', sans-serif;
+            background: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(25,25,25,0.95) 0%, rgba(10,10,10,0.98) 100%);
+            opacity: 1;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/facd6c4f-3dd2-4e1a-bc96-862ffa63aee2.png') center/cover;
+            background-size: contain;
+            opacity: 0.08;
+            z-index: -1;
+            pointer-events: none;
+            animation: animateBackground 60s linear infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', 'Montserrat', sans-serif;
+            color: var(--gold);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--gold);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 80px 0;
+        }
+
+        .portfolio-intro {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: var(--soft-dark);
+            color: var(--light-text);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background: var(--soft-dark);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-img img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-info {
+            padding: 25px;
+        }
+
+        .portfolio-item h3 {
+            margin-bottom: 10px;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .portfolio-tag {
+            padding: 5px 10px;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .portfolio-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-link:hover {
+            text-decoration: underline;
+        }
+
+        .floating-code-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .code-icon {
+            position: absolute;
+            opacity: 0.05;
+            font-family: monospace;
+            color: var(--gold);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                gap: 10px;
+            }
+        }
+
+        /* Animation for background elements */
+        @keyframes animateBackground {
+            0% {
+                background-position: 0 0;
+                opacity: 0.08;
+            }
+            50% {
+                background-position: 50% 50%;
+                opacity: 0.12;
+            }
+            100% {
+                background-position: 100% 100%;
+                opacity: 0.08;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.1); opacity: 0.15; }
+            100% { transform: scale(1); opacity: 0.1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-code-icons" id="codeIcons"></div>
+
+    <header>
+        <div class="container">
+            <h1>Prince Ogur</h1>
+            <p class="subtitle">Software Developer & Academic Writer</p>
+        </div>
+    </header>
+
+    <section class="portfolio-section">
+        <div class="container">
+            <div class="portfolio-intro">
+                <h2>My Portfolio</h2>
+                <p>A curated collection of my finest software development projects and academic writings. Each piece reflects my dedication to craftsmanship in both technical and scholarly domains.</p>
+            </div>
+      
+            <div class="filter-buttons">
+                <a href="index.html" class="filter-btn">Home</a>
+                <a href="contact.html" class="filter-btn">Contact</a>
+                <a href="softwareprojects.html" class="filter-btn">Software projects</a>
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="software">Software</button>
+                <button class="filter-btn" data-filter="academic">Academic</button>
+
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <div class="portfolio-item" data-category="software">
+                    <div class="portfolio-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6c6451ce-bc7d-426a-9cc0-b7ccfa2b0704.png" alt="Modern web application dashboard with analytics charts and user management interface">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Enterprise Management System</h3>
+                        <p>A full-stack solution for business operations with real-time analytics and reporting.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">React</span>
+                            <span class="portfolio-tag">Node.js</span>
+                            <span class="portfolio-tag">MongoDB</span>
+                        </div>
+                        <a href="#" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item" data-category="academic">
+                    <div class="portfolio-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4e52d62e-27e5-445a-b59b-f15b07b52b36.png" alt="Academic paper titled 'Quantum Algorithms for Optimization Problems' with mathematical formulas">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Quantum Computing Applications</h3>
+                        <p>Research paper exploring practical implementations of quantum algorithms in optimization.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Quantum Computing</span>
+                            <span class="portfolio-tag">Research</span>
+                            <span class="portfolio-tag">Published</span>
+                        </div>
+                        <a href="#" class="portfolio-link">Read Paper →</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item" data-category="software">
+                    <div class="portfolio-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bd5a2c10-3dbd-40ec-bdf1-fbbd3d63e325.png" alt="Mobile application running on phone showing augmented reality navigation interface">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>AR Navigation App</h3>
+                        <p>Augmented reality application providing indoor wayfinding with markerless tracking.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">ARKit</span>
+                            <span class="portfolio-tag">Swift</span>
+                            <span class="portfolio-tag">ARCore</span>
+                        </div>
+                        <a href="#" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item" data-category="academic">
+                    <div class="portfolio-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a59d10dd-6909-4bf6-b440-2f27f344a3d5.png" alt="Diagram of neural network architecture with layers and connections visualized">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Machine Learning Ethics</h3>
+                        <p>Comprehensive analysis of ethical implications in modern ML systems and datasets.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">AI Ethics</span>
+                            <span class="portfolio-tag">White Paper</span>
+                            <span class="portfolio-tag">Peer Reviewed</span>
+                        </div>
+                        <a href="#" class="portfolio-link">Read Article →</a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-item" data-category="software">
+                    <div class="portfolio-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b6139cf5-bc8e-43c0-b692-41132862f515.png" alt="DevOps pipeline dashboard showing CI/CD flow from code commit to deployment">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>DevOps Automation Suite</h3>
+                        <p>End-to-end automation solution for continuous integration and deployment pipelines.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Docker</span>
+                            <span class="portfolio-tag">Kubernetes</span>
+                            <span class="portfolio-tag">GitHub Actions</span>
+                        </div>
+                        <a href="softwareprojects.html" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-item" data-category="academic">
+                    <div class="portfolio-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ecdc49fa-0061-41dd-b940-b92ee6a66c5d.png" alt="Historical timeline visualization of programming language evolution from 1950 to present">
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Programming Paradigms</h3>
+                        <p>Historical analysis of programming language evolution and paradigm shifts.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Computer Science</span>
+                            <span class="portfolio-tag">History</span>
+                            <span class="portfolio-tag">Featured</span>
+                        </div>
+                        <a href="portfolio.html" class="portfolio-link">Read Article →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Create floating code icons
+        const codeIconsContainer = document.getElementById('codeIcons');
+        const codeSymbols = ['{}', '</>', '📚', '📖', '📝', '💻', '📊', '🔍', '()', '[]', '=', '++', '--', '!=', '==', '<=', '>=', '/*', '*/', '?', ':', '&&', '||', '${}'];
+        
+        for (let i = 0; i < 30; i++) {
+            const icon = document.createElement('div');
+            icon.className = 'code-icon';
+            icon.textContent = codeSymbols[Math.floor(Math.random() * codeSymbols.length)];
+            
+            // Random positioning
+            icon.style.left = `${Math.random() * 100}%`;
+            icon.style.top = `${Math.random() * 100}%`;
+            icon.style.fontSize = `${Math.random() * 20 + 10}px`;
+            
+            // Random animation duration and delay
+            icon.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            icon.style.animationDelay = `${Math.random() * 5}s`;
+            
+            codeIconsContainer.appendChild(icon);
+        }
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filterValue = button.dataset.filter;
+                
+                // Filter items
+                portfolioItems.forEach(item => {
+                    const categories = item.dataset.category;
+                    
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Animate appearing items
+                setTimeout(() => {
+                    const visibleItems = document.querySelectorAll('.portfolio-item[style="display: block;"]');
+                    visibleItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                item.style.transition = 'all 0.5s ease';
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 50);
+                        }, index * 100);
+                    });
+                }, 50);
+            });
+        });
+
+        // Smooth hover effects
+        const portfolioImages = document.querySelectorAll('.portfolio-img');
+        portfolioImages.forEach(image => {
+            image.addEventListener('mouseenter', () => {
+                const img = image.querySelector('img');
+                img.style.transform = 'scale(1.1)';
+            });
+            
+            image.addEventListener('mouseleave', () => {
+                const img = image.querySelector('img');
+                img.style.transform = 'scale(1)';
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        portfolioItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.5s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>

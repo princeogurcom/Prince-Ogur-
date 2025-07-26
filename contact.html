@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Prince Ogur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #f1f1f1;
+            min-height: 100vh;
+        }
+
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e838e2bb-4795-4d1e-9d1f-5f909c18e74f.png');
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .code-symbol {
+            position: absolute;
+            color: rgba(255, 215, 0, 0.1);
+            font-size: 2rem;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+
+        footer {
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+        }
+
+        .quick-link {
+            transition: color 0.3s ease;
+        }
+
+        .quick-link:hover {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background animation and code symbols -->
+    <div class="bg-pattern"></div>
+
+    <!-- Navigation Buttons -->
+    <div class="container mx-auto px-4 pt-8">
+        <div class="flex justify-center space-x-4 mb-8">
+            <a href="index.html" class="bg-[#FFD700] text-[#16213e] py-2 px-4 rounded-lg font-medium">Home</a>
+            <a href="portfolio.html" class="bg-[#FFD700] text-[#16213e] py-2 px-4 rounded-lg font-medium">Portfolio</a>
+            <a href="contactform.html" class="bg-[#FFD700] text-[#16213e] py-2 px-4 rounded-lg font-medium">Contact Form</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 pb-16">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center text-[#FFD700]">Let’s Work Together</h1>
+        <p class="text-lg text-center mb-12 max-w-2xl mx-auto">Feel free to contact me for freelance projects, collaborations, or any inquiries. I’m available and responsive on WhatsApp and email.</p>
+
+        <div class="flex flex-col items-center mb-12">
+            <p class="text-lg mb-4">📧 Email: princewriter78@gmail.com</p>
+            <p class="text-lg mb-4">📞 Phone: +254 7900 53 594</p>
+            <div class="flex space-x-4 mb-4">
+                <a href="https://www.linkedin.com/in/princeogur" target="_blank" class="text-[#FFD700]">💼 LinkedIn</a>
+                <a href="https://github.com/princeogur" target="_blank" class="text-[#FFD700]">💼 GitHub</a>
+                <a href="https://medium.com/@princeogur" target="_blank" class="text-[#FFD700]">💼 Medium</a>
+            </div>
+        </div>
+
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/254790053594?text=Hello%20Prince%2C%20I%27m%20interested%20in%20your%20services%20from%20your%20portfolio%20site." target="_blank" class="whatsapp-button mb-8">
+            📱 Chat on WhatsApp
+        </a>
+
+
+
+
+
+
+
+
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm">© 2025 Prince Ogur. All rights reserved.</p>
+                </div>
+                <div class="flex flex-wrap justify-center space-x-4 mb-4 md:mb-0">
+                    <a href="index.html" class="quick-link text-sm">Home</a>
+                    <a href="portfolio.html" class="quick-link text-sm">Projects</a>
+                    <a href="contact.html" class="quick-link text-sm">Contact</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="https://wa.me/254790053594" class="social-icon" target="_blank" title="WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#FFD700]" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.956.005-5.352 4.38-9.723 9.732-9.728 2.599.004 5.013 1.019 6.835 2.861 1.817 1.817 2.846 4.258 2.845 6.858-.003 5.367-4.375 9.737-9.742 9.736h-.003c-2.088-.002-4.123-.55-5.921-1.591l-6.144 1.682zm9.732-17.248c-4.315 0-7.825 3.511-7.829 7.827-.001 1.693.528 3.325 1.501 4.652l-1.054 3.848 3.911-1.07c1.328.955 2.938 1.485 4.612 1.486h.007c4.309 0 7.818-3.511 7.822-7.824.002-4.317-3.504-7.83-7.82-7.83l-.009.004zm5.447 8.779c-.033.074-1.109 2.781-3.146 3.832-.777.412-1.446.644-2.004.82-.401.128-.768.224-1.098.223-.24 0-.505-.057-.755-.235-.228-.162-.377-.39-.475-.62-.116-.276-.182-.654-.118-.987.087-.473.318-.973.599-1.409.355-.546.752-1.009 1.115-1.357.228-.218.437-.375.592-.483.153-.105.261-.155.353-.163.079-.007.168 0 .281.045.334.135.553.391.777.7.201.276.437.616.695 1.006.225.338.404.663.523.838.136.2.269.243.429.179.16-.06.709-.429 1.338-.99.507-.456.932-1.019 1.18-1.581.128-.288.128-.537 0-.718-.111-.158-.43-.261-.881-.246-.469.016-1.097.101-1.662.317-.456.172-.865.402-1.211.633-.345.231-.689.56-.99.918-.147.177-.295.354-.453.532-.208.229-.438.484-.687.753-.04.033-.087.082-.137.131l-.207-.219c-.295-.31-.622-.688-.91-1.076-.366-.493-.721-.97-.966-1.361-.216-.346-.389-.709-.468-1.042-.093-.383-.089-.718.02-.991.11-.274.313-.475.583-.565.234-.076.545-.04.844.021.308.062.688.222 1.38.455.412.244.887.603 1.38 1.097.535.533.983 1.115 1.302 1.668.322.554.581 1.171.668 1.641.085.465.021.912-.183 1.221z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:princewriter78@gmail.com" class="social-icon" title="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#FFD700]" fill="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <style>
+        .code-symbol {
+            z-index: -1;
+        }
+    </style>
+    <script>
+        // Animations for code symbols
+        const symbols = document.querySelectorAll('.code-symbol');
+        symbols.forEach((symbol, index) => {
+            // Randomize animation duration and delay
+            symbol.style.animationDuration = `${8 + Math.random() * 4}s`;
+            symbol.style.animationDelay = `${index * 0.5}s`;
+        });
+    </script>
+</body>
+</html>

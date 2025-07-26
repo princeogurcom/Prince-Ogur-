@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Ogur | Contact</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: 
+                linear-gradient(rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8)),
+                url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d545585d-4155-428a-abc8-dfc9d78089ca.png') center/cover no-repeat;
+            overflow: hidden;
+            position: relative;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated code symbol background */
+        .code-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: 
+                radial-gradient(circle, transparent 20%, 
+                rgba(255,215,0,0.03) 20%, rgba(255,215,0,0.03) 80%, transparent 80%, transparent), 
+                radial-gradient(circle, transparent 20%, 
+                rgba(255,215,0,0.03) 20%, rgba(255,215,0,0.03) 80%, transparent 80%, transparent) 50px 50px;
+            background-size: 100px 100px;
+            pointer-events: none;
+            animation: dotsScroll 60s linear infinite;
+        }
+
+        @keyframes dotsScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+
+        .code-symbol {
+            position: absolute;
+            animation: float 15s ease-in-out infinite;
+            opacity: 0.2;
+            text-shadow: 0 0 3px rgba(255,215,0,0.3);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-50vh) rotate(180deg) scale(1.2);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(1);
+            }
+        }
+
+        /* Contact section styling */
+        .contact {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 600px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .contact h2 {
+            color: #ffd700;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        /* Form styling */
+        .contact form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #f5f5f5;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Button styling */
+        .btn {
+            padding: 14px;
+            background: #ffd700;
+            color: #1e293b;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #ffc107;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .contact {
+                padding: 30px;
+            }
+
+            .contact h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact {
+                padding: 20px;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated code symbols background -->
+    <div class="code-bg" id="codeBg"></div>
+
+    <!-- Contact section -->
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <form action="https://formspree.io/f/xwpqlged" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        // Generate random code symbols for background
+        function generateCodeSymbols() {
+            const symbols = ['{', '}', '<', '>', '(', ')', '[', ']', '/', '\\', '|', '#', ';', '*', '=', '%', '&', '?', '+', '-'];
+            const bg = document.getElementById('codeBg');
+            
+            for (let i = 0; i < 30; i++) {
+                const symbol = document.createElement('div');
+                symbol.className = 'code-symbol';
+                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                symbol.style.left = Math.random() * 100 + 'vw';
+                symbol.style.top = Math.random() * 100 + 'vh';
+                symbol.style.fontSize = (Math.random() * 10 + 16) + 'px';
+                symbol.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                symbol.style.animationDelay = (Math.random() * 5) + 's';
+                bg.appendChild(symbol);
+            }
+        }
+
+        // Initialize background on load
+        window.addEventListener('load', generateCodeSymbols);
+    </script>
+</body>
+</html>

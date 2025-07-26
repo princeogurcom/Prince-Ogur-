@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Papers Collection</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .search-filter {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        select {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 1rem;
+        }
+
+        .papers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .paper-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .paper-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .paper-content {
+            padding: 1.5rem;
+        }
+
+        .paper-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .paper-authors {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .paper-abstract {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .paper-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            font-size: 0.85rem;
+        }
+
+        .paper-date {
+            color: #7f8c8d;
+        }
+
+        .paper-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .paper-link:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .papers-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-filter {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Technical Reports</h1>
+            <p class="subtitle">In-depth analysis of scientific and engineering research</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="search-filter">
+            <input type="text" class="search-box" placeholder="Search papers..." id="searchInput">
+            <div class="filter-group">
+                <select id="yearFilter">
+                    <option value="">All Years</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Applied Sciences">Applied Sciences</option>
+                    <option value="Technical Research">Technical Research</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="papers-container" id="papersContainer">
+            <!-- Paper cards will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>© 2023 Technical Reports Archive. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Sample research paper data
+        const papers = [
+            {
+                id: 1,
+                title: "Performance Analysis of Data Compression Algorithms",
+                authors: "Engineering Team, Technical Research Division",
+                abstract: "This technical report provides a comparative analysis of modern data compression techniques, evaluating performance metrics including compression ratio, speed, and computational efficiency across various file types and sizes.",
+                year: "2023",
+                category: "Engineering",
+                downloadLink: "#",
+                imageAlt: "Data visualization showing compression performance metrics across different algorithms"
+            },
+            {
+                id: 2,
+                title: "Ecological Impact of Urban Development",
+                authors: "D. Brown, E. Garcia",
+                abstract: "A longitudinal study examining the effects of urban expansion on local ecosystems. Our findings suggest targeted mitigation strategies can significantly reduce biodiversity loss while allowing for sustainable development.",
+                year: "2022",
+                category: "Biology",
+                downloadLink: "#",
+                imageAlt: "Aerial view showing the contrast between urban development and natural green spaces"
+            },
+            {
+                id: 3,
+                title: "Quantum Computing: Breaking New Ground",
+                authors: "F. Wilson, G. Chen, H. Patel",
+                abstract: "We demonstrate a new quantum algorithm that significantly outperforms classical computers on specific optimization problems. Experimental results from our quantum processor show promise for practical applications in logistics and finance.",
+                year: "2023",
+                category: "Physics",
+                downloadLink: "#",
+                imageAlt: "Quantum computing lab with advanced equipment and glowing quantum processor"
+            },
+            {
+                id: 4,
+                title: "Topological Approaches to Algebraic Geometry",
+                authors: "I. Martinez, J. Kim",
+                abstract: "This work establishes new connections between topological methods and classical problems in algebraic geometry. Our results provide tools for solving previously intractable problems in higher dimensions.",
+                year: "2021",
+                category: "Mathematics",
+                downloadLink: "#",
+                imageAlt: "Mathematical equations and geometric shapes floating in abstract space"
+            }
+        ];
+
+        // DOM elements
+        const papersContainer = document.getElementById('papersContainer');
+        const searchInput = document.getElementById('searchInput');
+        const yearFilter = document.getElementById('yearFilter');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        // Display all papers initially
+        displayPapers(papers);
+
+        // Add event listeners for filtering
+        searchInput.addEventListener('input', filterPapers);
+        yearFilter.addEventListener('change', filterPapers);
+        categoryFilter.addEventListener('change', filterPapers);
+
+        // Function to display papers
+        function displayPapers(papersToDisplay) {
+            papersContainer.innerHTML = '';
+            
+            if (papersToDisplay.length === 0) {
+                papersContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No papers found matching your criteria.</p>';
+                return;
+            }
+            
+            papersToDisplay.forEach(paper => {
+                const paperCard = document.createElement('div');
+                paperCard.className = 'paper-card';
+                
+                paperCard.innerHTML = `
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a1d45888-94d9-4471-a25b-9355b9e7d464.png" alt="${paper.imageAlt}" class="paper-image">
+                    <div class="paper-content">
+                        <h3 class="paper-title">${paper.title}</h3>
+                        <p class="paper-authors">${paper.authors}</p>
+                        <p class="paper-abstract">${paper.abstract}</p>
+                        <div class="paper-meta">
+                            <span class="paper-date">${paper.year} • ${paper.category}</span>
+                            <a href="${paper.downloadLink}" class="paper-link" target="_blank">View Paper</a>
+                        </div>
+                    </div>
+                `;
+                
+                papersContainer.appendChild(paperCard);
+            });
+        }
+
+        // Function to filter papers based on search and filters
+        function filterPapers() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedYear = yearFilter.value;
+            const selectedCategory = categoryFilter.value;
+            
+            const filteredPapers = papers.filter(paper => {
+                const matchesSearch = paper.title.toLowerCase().includes(searchTerm) || 
+                                     paper.authors.toLowerCase().includes(searchTerm) ||
+                                     paper.abstract.toLowerCase().includes(searchTerm);
+                
+                const matchesYear = selectedYear === '' || paper.year === selectedYear;
+                const matchesCategory = selectedCategory === '' || paper.category === selectedCategory;
+                
+                return matchesSearch && matchesYear && matchesCategory;
+            });
+            
+            displayPapers(filteredPapers);
+        }
+    </script>
+</body>
+</html>
+
